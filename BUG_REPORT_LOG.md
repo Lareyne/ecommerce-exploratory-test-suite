@@ -1,6 +1,6 @@
 # My Sauce Demo Bug Log
 
-This log documents functional and user interface defects identified on the Sauce Demo platform using the the 'problem_user credentials'. Chrome DevTools was kept open during testing to capture underlying system errors.
+This log documents functional and user interface defects identified on the Sauce Demo platform using the the `problem_user` credentials. Chrome DevTools was kept open during testing to capture underlying system errors.
 
 ---
 
