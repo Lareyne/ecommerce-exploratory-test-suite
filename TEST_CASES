@@ -1,0 +1,61 @@
+# Sauce Demo Functional Test Cases
+
+This document outlines the structured test cases designed to validate the core inventory, product routing, and checkout functionalities of the Sauce Demo e-commerce platform. 
+
+---
+
+## 📊 Requirement Traceability Matrix (RTM)
+
+The matrix below maps business requirements to their corresponding test cases and links them directly to discovered defects from the `BUG_REPORT_LOG.md`.
+
+| Requirement ID | Requirement Description | Test Case ID | Test Case Summary | Status | Linked Bug |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **REQ-INV-01** | Inventory images must dynamically match the listed product details. | `TC-INV-001` | Verify inventory product images match product descriptions. | ❌ **FAILED** | Bug #1: All product images are broken |
+| **REQ-RT-02** | Clicking a product must route the user to its specific detail page. | `TC-RT-002` | Verify product page routing and price accuracy. | ❌ **FAILED** | Bug #2: Product opens a broken page |
+| **REQ-CHK-03**| Checkout form must validate inputs and proceed to the review page. | `TC-CHK-003` | Verify checkout form entry and validation flow. | ❌ **FAILED** | Bug #3: Form doesn't allow user to complete order |
+
+---
+
+## 📝 Detailed Test Cases
+
+### 🛠️ Inventory Module
+
+#### **Test Case ID:** `TC-INV-001`
+* **Description:** Verify that all product images on the inventory page load correctly and correspond to their listed items (e.g., Backpack, Fleece Jacket).
+* **Pre-conditions:** User is on the Swag Labs login page.
+* **Test Data:** URL: `https://www.saucedemo.com/`, Credentials: `problem_user`
+
+| Step # | Test Steps | Expected Result | Actual Result | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Navigate to saucedemo.com. | Login page loads successfully. | As expected. | PASS |
+| 2 | Enter valid credentials and click "Login". | User is authenticated and redirected to the inventory catalog page (`/inventory.html`). | As expected. | PASS |
+| 3 | Inspect the product images for all items listed in the catalog. | Every item displays a high-resolution, unique image matching its product title. | All items display an identical placeholder picture of a dog. Console shows network failures. | **FAIL** |
+
+---
+
+### 🔄 Routing Module
+
+#### **Test Case ID:** `TC-RT-002`
+* **Description:** Verify that clicking on an individual product name successfully routes the user to that specific product's details view with the correct pricing.
+* **Pre-conditions:** User is logged into the inventory page.
+* **Test Data:** Target Item: "Sauce Labs Fleece Jacket"
+
+| Step # | Test Steps | Expected Result | Actual Result | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Locate the "Sauce Labs Fleece Jacket" on the inventory page. | Product name link is visible and clickable. | As expected. | PASS |
+| 2 | Click on the product name text link. | User is routed to the individual item page (`/inventory-item.html`) displaying description and correct price ($49.99). | Page displays "ITEM NOT FOUND" and price displays as a broken math formula (-1). | **FAIL** |
+
+---
+
+### 🛒 Checkout Module
+
+#### **Test Case ID:** `TC-CHK-003`
+* **Description:** Verify that the "Checkout: Your Information" form accepts alphanumeric characters, retains user input across fields, and navigates forward upon valid submission.
+* **Pre-conditions:** User has added at least one item to the cart and navigated to the checkout step (`/checkout-step-one.html`).
+* **Test Data:** First Name: `John`, Last Name: `Doe`, Zip Code: `12345`
+
+| Step # | Test Steps | Expected Result | Actual Result | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Click into the "First Name" field and type "John". | Field accepts input and displays "John". | As expected. | PASS |
+| 2 | Click into the "Last Name" field and type "Doe". | Field accepts input. Prior fields retain their data. | Inputting text into Last Name instantly clears the First Name field. Fields only accept single characters. | **FAIL** |
+| 3 | Complete remaining fields and click the "Continue" button. | Input data is stored, and user proceeds to checkout step two (`/checkout-step-two.html`). | Form resets completely, displays a false validation error: "Error: Last Name is required." | **FAIL** |
