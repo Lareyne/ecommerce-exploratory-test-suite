@@ -6,7 +6,7 @@ Conducted comprehensive manual testing on the Sauce Demo e-commerce platform usi
 
 * **[TEST_CASES.md](TEST_CASES.md):** The structured, step-by-step test scripts used to validate the application's core features against expected behavior.
 * **[BUG_REPORT_LOG.md](BUG_REPORT_LOG.md):** A technical log detailing the functional defects found during testing, including replication steps and severity levels.
-* **Evidence Captures:** Visual screenshots capturing the application failures alongside underlying browser console errors (`Bug 1.png`, `Bug 2.png`, `Bug 3.png`).
+* **Evidence Captures:** Visual screenshots capturing the application failures alongside underlying browser console errors [Bug 1.png](Bug1.png), [Bug 2.png](Bug2.png), [Bug 3.png](Bug3.png).
 
 ## 🛠️ Technologies & Tools Used
 
